@@ -1,0 +1,17 @@
+<launch>
+  <arg name="rviz_config" default="$(find-pkg-share graphslam)/rviz/rviz.config"/>
+
+  <arg name="rviz" default="true"/>
+
+  <node pkg="pointcloud_to_laserscan" exec="laserscan_to_pointcloud_node" name="pointcloud_to_laserscan"/>
+
+  <include file="$(find-pkg-share graphslam_prefiltering)/launch/graphslam_prefiltering.launch.xml"/>
+
+  <include file="$(find-pkg-share graphslam_scan_matcher)/launch/graphslam_scan_matcher.launch.xml"/>
+
+  <include file="$(find-pkg-share graphslam_backend)/launch/graphslam_backend.launch.xml"/>
+
+  <group if="$(var rviz)">
+    <node pkg="rviz2" exec="rviz2" name="rviz2" args="-d $(var rviz_config)"/>
+  </group>
+</launch>

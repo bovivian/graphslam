@@ -1,0 +1,40 @@
+/graphslam_backend_node:
+  ros__parameters:
+    rate: 1.0
+    search_lidar_frame_num: 100
+    search_radius: 100.0
+    score_threshold: 0.1
+    search_for_candidate_threshold: 100.0
+    accumulate_distance_threshold: 100.0
+    # Methods: NDT_OMP, FAST_GICP, GICP, ICP
+    registration_method: "NDT_OMP"
+
+    # Common Settings for Scan Matching
+    max_iteration: 300
+    omp_num_thread: 7
+    #transformation_epsilon: 0.01 # NDT_OMP
+    transformation_epsilon: 0.01 # GICP
+
+    # NDT_OMP
+    step_size: 0.1
+    ndt_resolution: 1.0
+
+    # FAST_GICP
+    max_correspondence_distance: 2.0
+    correspondence_randomness: 20
+    max_optimizer_iteration: 20
+
+    # GICP
+    correspondence_distance: 2.0
+    euclidean_fitness_epsilon: 1e-08
+    ransac_iteration: 0
+
+    # Optimizations
+    use_gauss_newton_optimization: false
+    use_dog_leg_optimization: false
+    use_isam2_optimization: false
+    use_levenberg_marquardt_optimization: false
+
+    use_detect_loop_with_accum_dist: false
+    use_detect_loop_with_kd_tree_: false
+    use_detect_loop_with_min_dist: true
